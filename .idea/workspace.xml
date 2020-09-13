@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7a8d5aad-feab-4813-9321-ed2bd5a5093c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="/usr/local/go" />
+  <component name="ProjectId" id="1gbULHMP9QCSVWLLaYSaEk1p2oR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AvitoChats" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="598" y="1182" width="400" height="339" key="#Go_Modules" timestamp="1598382840198">
+      <screen x="0" y="900" width="1536" height="864" />
+    </state>
+    <state x="598" y="1182" width="400" height="339" key="#Go_Modules/0.900.1536.864/64.0.1376.900@0.900.1536.864" timestamp="1598382840198" />
+    <state x="398" y="107" width="800" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600022842353">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state x="398" y="107" width="800" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/64.27.1472.837@64.27.1472.837" timestamp="1600022842353" />
+    <state x="688" y="1224" width="216" height="273" key="EnvironmentVariablesDialog" timestamp="1598382839107">
+      <screen x="0" y="900" width="1536" height="864" />
+    </state>
+    <state x="688" y="1224" width="216" height="273" key="EnvironmentVariablesDialog/0.900.1536.864/64.0.1376.900@0.900.1536.864" timestamp="1598382839107" />
+    <state x="586" y="199" width="424" height="496" key="FileChooserDialogImpl" timestamp="1600019261646">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state x="586" y="199" width="424" height="496" key="FileChooserDialogImpl/64.27.1472.837@64.27.1472.837" timestamp="1600019261646" />
+  </component>
+</project>
