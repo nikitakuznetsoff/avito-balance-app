@@ -5,20 +5,21 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"fmt"
 )
 
 type Repository struct {
 	DB	*sql.DB
-	ctx context.Context
+	Ctx context.Context
 }
 
-func NewRepository(db *sql.DB) *Repository {
-	return &Repository{DB: db}
+func NewRepository(db *sql.DB, ctx context.Context) *Repository {
+	return &Repository{DB: db, Ctx: ctx}
 }
 
 // Метод для получения баланса пользователя с созданием транзакции
 func (repo *Repository) GetBalance(user *models.User) (float64, error){
-	tx, err := repo.DB.BeginTx(repo.ctx, nil)
+	tx, err := repo.DB.BeginTx(repo.Ctx, nil)
 	if err != nil {
 		return -1, err
 	}
@@ -52,7 +53,7 @@ func (repo *Repository) getBalance(userID int64, tx *sql.Tx) (float64, error){
 
 // Метод снятия средств во счета пользователя с созданием транзакции
 func (repo *Repository) Get(op *models.Operation) (int64, error) {
-	tx, err := repo.DB.BeginTx(repo.ctx, nil)
+	tx, err := repo.DB.BeginTx(repo.Ctx, nil)
 
 	rowsAffected, err := repo.get(op, tx)
 	if err != nil {
@@ -77,7 +78,7 @@ func (repo *Repository) get(op *models.Operation, tx *sql.Tx) (int64, error) {
 	}
 
 	if balance < op.Value {
-		return -1, errors.New("user doesn't have much money")
+		return -1, errors.New(fmt.Sprintf("user (ID:%v) doesn't have much money", op.UserID))
 	}
 
 	result, err := tx.Exec(
@@ -92,7 +93,7 @@ func (repo *Repository) get(op *models.Operation, tx *sql.Tx) (int64, error) {
 
 // Метод для начисления средств пользователю с созданием транзакции
 func (repo *Repository) Set(op *models.Operation) (int64, error) {
-	tx, err := repo.DB.BeginTx(repo.ctx, nil)
+	tx, err := repo.DB.BeginTx(repo.Ctx, nil)
 	if err != nil {
 		return -1, err
 	}
@@ -143,9 +144,9 @@ func (repo *Repository) set(op *models.Operation, tx *sql.Tx) (int64, error) {
 
 // Метод для перевода средств от одного пользователя к другому
 func (repo *Repository) Transfer(tr *models.Transaction) error {
-	tx, err := repo.DB.BeginTx(repo.ctx, nil)
+	tx, err := repo.DB.BeginTx(repo.Ctx, nil)
 	// Снятие средств у отправителя
-	_, err = repo.get(&models.Operation{ UserID: tr.ReceiverID, Value: tr.Value }, tx)
+	_, err = repo.get(&models.Operation{ UserID: tr.SenderID, Value: tr.Value }, tx)
 	if err != nil {
 		rollbackErr := tx.Rollback()
 		if rollbackErr != nil {
@@ -154,7 +155,7 @@ func (repo *Repository) Transfer(tr *models.Transaction) error {
 		return err
 	}
 	// Начисление средств получателю
-	_, err = repo.set(&models.Operation{ UserID: tr.SenderID, Value: tr.Value }, tx)
+	_, err = repo.set(&models.Operation{ UserID: tr.ReceiverID, Value: tr.Value }, tx)
 	if err != nil {
 		rollbackErr := tx.Rollback()
 		if rollbackErr != nil {

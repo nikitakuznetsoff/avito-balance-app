@@ -1,8 +1,9 @@
-package balanceapp
+package main
 
 import (
 	"balanceapp/pkg/database"
 	"balanceapp/pkg/handlers"
+	"context"
 	"log"
 
 	"database/sql"
@@ -14,7 +15,7 @@ import (
 )
 
 func main() {
-	dsn := "root:pass@tcp(localhost:3306)/balanceapp"
+	dsn := "root:pass@tcp(localhost:3306)/balanceapp?"
 	dsn += "&charset=utf8"
 	dsn += "&interpolateParams=true"
 
@@ -29,13 +30,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	repo := database.NewRepository(db)
+	repo := database.NewRepository(db, context.Background())
 	handler := handlers.Handler{Repo: repo}
 
 	router := mux.NewRouter()
-	router.HandleFunc("/balance", handler.GetUserBalance).Methods("GET")
+	router.HandleFunc("/balance", handler.GetUserBalance).Methods("POST")
 	router.HandleFunc("/balance/withdraw", handler.WithdrawMoney).Methods("POST")
-	router.HandleFunc("/balance/add", handler.DepositMoney).Methods("POST")
+	router.HandleFunc("/balance/deposit", handler.DepositMoney).Methods("POST")
 	router.HandleFunc("/balance/transfer", handler.Transfer).Methods("POST")
 
 	address := ":9000"

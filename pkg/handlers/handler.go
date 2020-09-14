@@ -43,7 +43,7 @@ func (h *Handler) GetUserBalance(w http.ResponseWriter, r *http.Request) {
 	}
 	// Если есть параметр другой валюты, то получаем текущий курс и изменяем значение баланса
 	if currency != "" {
-		url := "https://api.exchangeratesapi.io/latest?base=RUB?symbols=" + currency
+		url := "https://api.exchangeratesapi.io/latest?base=RUB"
 		resp, err := http.Get(url)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
@@ -53,11 +53,20 @@ func (h *Handler) GetUserBalance(w http.ResponseWriter, r *http.Request) {
 		respBody, err := ioutil.ReadAll(resp.Body)
 		curr := &models.Currency{}
 		err = json.Unmarshal(respBody, &curr)
-		balance = balance * curr.Rates[currency]
+
+		currValue, ok := curr.Rates[currency]
+		if !ok {
+			http.Error(w, errors.New("incorrect currency").Error(), http.StatusBadRequest)
+			return
+		}
+		balance = balance * currValue
 	} else {
 		currency = "RUB"
 	}
-	fmt.Fprintf(w, "\nBalance of User(ID:%v) - %v %s\n", user.ID, balance, currency)
+	fmt.Fprintf(
+		w,
+		"\n[BALANCE] Balance of User(ID:%v) - %v %s\n",
+		user.ID, balance, currency)
 }
 
 func (h *Handler) WithdrawMoney(w http.ResponseWriter, r *http.Request) {
@@ -91,8 +100,8 @@ func (h *Handler) WithdrawMoney(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Fprintf(
 		w,
-		"\nThe money was withdrawn from the account (UserID: %v)\n",
-		operation.UserID,
+		"\n[WITHDRAW] %v %s was withdrawn from the account (UserID: %v)\n",
+		operation.Value, "RUB", operation.UserID,
 	)
 }
 
@@ -126,7 +135,11 @@ func (h *Handler) DepositMoney(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	fmt.Fprintf(w, "\nThe money was deposited to the account (UserID: %v)\n", operation.UserID)
+	fmt.Fprintf(
+		w,
+		"\n[DEPOSIT] %v %s was deposited to the account (UserID: %v)\n",
+		operation.Value, "RUB", operation.UserID,
+	)
 }
 
 func (h *Handler) Transfer(w http.ResponseWriter, r *http.Request) {
@@ -160,7 +173,7 @@ func (h *Handler) Transfer(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Fprintf(
 		w,
-		"\nThe money was transferred from User(ID:%v) to User(ID:%v)\n",
-		transaction.SenderID, transaction.ReceiverID,
+		"\n[TRANSFER] %v %s was transferred from User(ID:%v) to User(ID:%v)\n",
+		transaction.Value, "RUB", transaction.SenderID, transaction.ReceiverID,
 	)
 }
