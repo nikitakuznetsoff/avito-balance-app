@@ -28,14 +28,14 @@ http://localhost:9000/balance?currency=USD
 ```
 curl --header "Content-Type: application/json" \
 --request POST \
---data '{"userID": 2, "value": 50}' \
+--data '{"userID": 2, "value": 50.44}' \
 http://localhost:9000/balance/withdraw
 ```
 - `localhost:9000/balance/deposit` - зачисление денег на баланс пользователя
 ```
 curl --header "Content-Type: application/json" \
 --request POST \
---data '{"userID": 2, "value": 10.22}' \
+--data '{"userID": 2, "value": 100.66}' \
 http://localhost:9000/balance/deposit
 ```
 - `localhost:9000/balance/transfer` - перевод денег от одного пользователя к другому
