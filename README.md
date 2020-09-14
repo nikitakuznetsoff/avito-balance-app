@@ -12,7 +12,7 @@
 ## Описание API
   
 ## Структура проекта
-Пытался структурировать проект в соответствии с `https://github.com/golang-standards/project-layout`
+Пытался структурировать проект в соответствии с [Standard Go Project Layout](https://github.com/golang-standards/project-layout)
 ```
 BalanceApp
 │   README.md
@@ -47,11 +47,11 @@ BalanceApp
     │   wait-for-it.sh
 ```
 
-- ```bin/chatsapp``` - бинарник для запуска проекта в контейнере
-- ```_sql/db.sql``` - файл инициализации базы данных с созданием нужных таблиц
-- ```cmd/chatsapp/main.go``` - файл для запуска приложения
-- ```pkg/database``` - реализация работы с БД по паттерну "Репозиторий"
-- ```pkg/handlers``` - HTTP обработчики для запросов
-- ```pkg/models``` - описания объектов
-- ```script/wait-for-it.sh``` - скрипт для ожидания доступности TCP хоста с портом ```https://github.com/vishnubob/wait-for-it```
+- `bin/chatsapp` - бинарник для запуска проекта в контейнере
+- `_sql/db.sql` - файл инициализации базы данных с созданием нужных таблиц
+- `cmd/chatsapp/main.go` - файл для запуска приложения
+- `pkg/database` - реализация работы с БД по паттерну "Репозиторий"
+- `pkg/handlers` - HTTP обработчики для запросов
+- `pkg/models` - описания объектов
+- `script/wait-for-it.sh` - скрипт для ожидания доступности TCP хоста с портом [wait-for-it](https://github.com/vishnubob/wait-for-it)
   > Используется во время развертывания для ожидания запуска БД
