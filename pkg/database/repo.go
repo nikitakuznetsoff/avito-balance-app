@@ -54,6 +54,9 @@ func (repo *Repository) getBalance(userID int64, tx *sql.Tx) (float64, error){
 // Метод снятия средств во счета пользователя с созданием транзакции
 func (repo *Repository) Get(op *models.Operation) (int64, error) {
 	tx, err := repo.DB.BeginTx(repo.Ctx, nil)
+	if err != nil {
+		return -1, err
+	}
 
 	rowsAffected, err := repo.get(op, tx)
 	if err != nil {
@@ -114,7 +117,6 @@ func (repo *Repository) Set(op *models.Operation) (int64, error) {
 	return result, err
 }
 
-
 // Метод запроса на зачисления средств
 func (repo *Repository) set(op *models.Operation, tx *sql.Tx) (int64, error) {
 	balance, err := repo.getBalance(op.UserID, tx)
@@ -145,6 +147,10 @@ func (repo *Repository) set(op *models.Operation, tx *sql.Tx) (int64, error) {
 // Метод для перевода средств от одного пользователя к другому
 func (repo *Repository) Transfer(tr *models.Transaction) error {
 	tx, err := repo.DB.BeginTx(repo.Ctx, nil)
+	if err != nil {
+		return err
+	}
+
 	// Снятие средств у отправителя
 	_, err = repo.get(&models.Operation{ UserID: tr.SenderID, Value: tr.Value }, tx)
 	if err != nil {

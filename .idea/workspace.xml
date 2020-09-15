@@ -20,10 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d5aad-feab-4813-9321-ed2bd5a5093c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/database/repo_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/balanceapp/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/balanceapp/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/database/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/database/repo.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +54,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AvitoChats" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Courses/Golang/Homeworks" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -74,6 +75,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -91,9 +93,9 @@
       <screen x="0" y="900" width="1536" height="864" />
     </state>
     <state x="688" y="1224" width="216" height="273" key="EnvironmentVariablesDialog/0.900.1536.864/64.0.1376.900@0.900.1536.864" timestamp="1598382839107" />
-    <state x="586" y="194" width="424" height="496" key="FileChooserDialogImpl" timestamp="1600099167528">
+    <state x="586" y="189" width="424" height="496" key="FileChooserDialogImpl" timestamp="1600167169140">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="586" y="194" width="424" height="496" key="FileChooserDialogImpl/64.27.1472.837@64.27.1472.837" timestamp="1600099167528" />
+    <state x="586" y="189" width="424" height="496" key="FileChooserDialogImpl/64.27.1472.837@64.27.1472.837" timestamp="1600167169140" />
   </component>
 </project>
