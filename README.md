@@ -8,6 +8,7 @@
 - В качестве хранилища используется база MySQL (v. 8.0.21)
   + База данных содержит 1 таблицу `users` c типом хранения данных InnoDB
   + Структуру таблицы можно посмотреть в файле инициализации `_sql/db.sql`
+- Для тестирования методов работы с БД использовал [go-sqlmock](https://github.com/DATA-DOG/go-sqlmock)
   
 ## Описание API
 - `localhost:9000/balance` - получение баланса пользователя
@@ -71,6 +72,7 @@ BalanceApp
 |   |
 │   └───database
 │   |   │   repo.go
+│   |   │   repo_test.go
 |   |
 │   └───handlers
 │   |   │   handler.go
