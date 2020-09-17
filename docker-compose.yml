@@ -1,20 +1,20 @@
 version: '3'
 
 services:
-  chatsapp:
+  balanceapp:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: balanceap
+    container_name: balanceapp
     depends_on:
-      - "db"
+      - "db_mysql"
     ports:
       - '9000:9000'
-    command: ["/go/src/balanceap/scripts/wait-for-it.sh", "db:3306", "--", "/go/src/balanceap/bin/balanceap"]
+    command: ["/go/src/balanceapp/scripts/wait-for-it.sh", "db_mysql:3306", "--", "/go/src/balanceapp/bin/balanceapp"]
 
-  db:
+  db_mysql:
     image: mysql:8.0.21
-    container_name: db
+    container_name: db_mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     ports:
@@ -24,7 +24,7 @@ services:
     #      - dbdata:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: "pass"
-      MYSQL_DATABASE: balanceap
+      MYSQL_DATABASE: balanceapp
 
 #volumes:
 #  dbdata:

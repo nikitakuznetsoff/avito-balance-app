@@ -19,6 +19,7 @@ func NewRepository(db *sql.DB, ctx context.Context) *Repository {
 
 // Метод для получения баланса пользователя с созданием транзакции
 func (repo *Repository) GetBalance(user *models.User) (float64, error){
+	// Старт транзакции
 	tx, err := repo.DB.BeginTx(repo.Ctx, nil)
 	if err != nil {
 		return -1, err
@@ -66,6 +67,7 @@ func (repo *Repository) Get(op *models.Operation) (int64, error) {
 		}
 		return -1, err
 	}
+
 	err = tx.Commit()
 	if err != nil {
 		return -1, err

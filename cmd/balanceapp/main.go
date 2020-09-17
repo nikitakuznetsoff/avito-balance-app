@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	dsn := "root:pass@tcp(db:3306)/balanceapp?"
+	dsn := "root:pass@tcp(db_mysql:3306)/balanceapp?"
 	dsn += "&charset=utf8"
 	dsn += "&interpolateParams=true"
 
